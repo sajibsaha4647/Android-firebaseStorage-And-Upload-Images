@@ -23,7 +23,7 @@ public class ProfileListActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private RecycleAdapter recycleAdapter;
-    private List<ImageUpload>imageUploads;
+    private ArrayList<ImageUpload>imageUploads;
     DatabaseReference databaseReference;
 
 
@@ -34,8 +34,6 @@ public class ProfileListActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference("upload");
 
         recyclerView = findViewById(R.id.RecycleId);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(ProfileListActivity.this));
         imageUploads = new ArrayList<ImageUpload>();
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -49,6 +47,8 @@ public class ProfileListActivity extends AppCompatActivity {
 
 
                 recycleAdapter = new RecycleAdapter(ProfileListActivity.this,imageUploads);
+                recyclerView.setHasFixedSize(true);
+                recyclerView.setLayoutManager(new LinearLayoutManager(ProfileListActivity.this));
                 recyclerView.setAdapter(recycleAdapter);
 
 
