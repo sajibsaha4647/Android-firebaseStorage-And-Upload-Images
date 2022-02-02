@@ -6,7 +6,7 @@ public class ImageUpload {
     private String ImageURI;
 
     public ImageUpload(String imageURI) {
-        ImageURI = imageURI;
+       this.ImageURI = imageURI;
     }
 
     public ImageUpload() {

@@ -36,7 +36,7 @@ public class ProfileListActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.RecycleId);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(ProfileListActivity.this));
-        imageUploads = new ArrayList<>();
+        imageUploads = new ArrayList<ImageUpload>();
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
