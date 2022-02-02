@@ -77,11 +77,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             OpenFIleChooser();
             System.out.println("click");
         }else if(view.getId() == R.id.imageupload){
-            if(uploadTask != null && uploadTask.isInProgress()){
-                Toast.makeText(MainActivity.this,"Upload in progress",Toast.LENGTH_LONG).show();
-            }else {
-                SaveImageFile();
-            }
+           try{
+               if(uploadTask != null && uploadTask.isInProgress()){
+                   Toast.makeText(MainActivity.this,"Upload in progress",Toast.LENGTH_LONG).show();
+               }else {
+                   SaveImageFile();
+               }
+           }catch(Exception e){
+
+           }
 
         }else if(view.getId() == R.id.imagepreview){
 
