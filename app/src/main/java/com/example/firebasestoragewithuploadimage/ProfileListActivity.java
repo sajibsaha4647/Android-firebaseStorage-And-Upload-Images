@@ -26,6 +26,7 @@ public class ProfileListActivity extends AppCompatActivity {
     private List<ImageUpload>imageUploads;
     DatabaseReference databaseReference;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +41,16 @@ public class ProfileListActivity extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for (DataSnapshot dataSnapshot1:snapshot.getChildren()){
+                    ImageUpload upload = dataSnapshot1.getValue(ImageUpload.class);
+                    imageUploads.add(upload);
+                }
+
+
+                recycleAdapter = new RecycleAdapter(ProfileListActivity.this,imageUploads);
+                recyclerView.setAdapter(recycleAdapter);
+
 
 
 

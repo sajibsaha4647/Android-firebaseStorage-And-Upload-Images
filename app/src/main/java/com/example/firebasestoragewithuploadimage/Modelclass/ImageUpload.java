@@ -9,6 +9,9 @@ public class ImageUpload {
         ImageURI = imageURI;
     }
 
+    public ImageUpload() {
+    }
+
     public String getImageURI() {
         return ImageURI;
     }
