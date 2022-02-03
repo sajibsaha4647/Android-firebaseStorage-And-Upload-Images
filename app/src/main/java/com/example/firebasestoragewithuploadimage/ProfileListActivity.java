@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.firebasestoragewithuploadimage.AdaptarClass.RecycleAdapter;
+import com.example.firebasestoragewithuploadimage.Modelclass.ImageRetrive;
 import com.example.firebasestoragewithuploadimage.Modelclass.ImageUpload;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -16,6 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +25,7 @@ public class ProfileListActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private RecycleAdapter recycleAdapter;
-    private ArrayList<ImageUpload>imageUploads;
+    private ArrayList<String>imageList;
     DatabaseReference databaseReference;
 
 
@@ -34,24 +36,20 @@ public class ProfileListActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference("upload");
 
         recyclerView = findViewById(R.id.RecycleId);
-        imageUploads = new ArrayList<ImageUpload>();
+        imageList = new ArrayList<String>();
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 for (DataSnapshot dataSnapshot1:snapshot.getChildren()){
-                    ImageUpload upload = dataSnapshot1.getValue(ImageUpload.class);
-                    imageUploads.add(upload);
+                    imageList.add(dataSnapshot1.getValue().toString());
                 }
 
-
-                recycleAdapter = new RecycleAdapter(ProfileListActivity.this,imageUploads);
+                recycleAdapter = new RecycleAdapter(ProfileListActivity.this,imageList);
                 recyclerView.setHasFixedSize(true);
                 recyclerView.setLayoutManager(new LinearLayoutManager(ProfileListActivity.this));
                 recyclerView.setAdapter(recycleAdapter);
-
-
 
 
             }

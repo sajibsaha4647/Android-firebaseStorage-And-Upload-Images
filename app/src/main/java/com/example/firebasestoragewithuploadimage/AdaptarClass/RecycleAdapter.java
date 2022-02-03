@@ -9,20 +9,20 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.firebasestoragewithuploadimage.Modelclass.ImageUpload;
+import com.example.firebasestoragewithuploadimage.Modelclass.ImageRetrive;
 import com.example.firebasestoragewithuploadimage.R;
 import com.squareup.picasso.Picasso;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyviewHolder> {
 
     Context context;
-    private List<ImageUpload>uploadList;
+    private ArrayList<String> retriveList;
 
-    public RecycleAdapter(Context context, List<ImageUpload> uploadlist) {
+    public RecycleAdapter(Context context, ArrayList<String> uploadlist) {
         this.context = context;
-        this.uploadList = uploadlist;
+        this.retriveList = uploadlist;
     }
 
     @NonNull
@@ -38,14 +38,13 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyviewHo
     @Override
     public void onBindViewHolder(@NonNull MyviewHolder holder, int position) {
 
-        ImageUpload imageUpload = uploadList.get(position);
-        Picasso.with(context).load(imageUpload.getImageURI()).placeholder(R.drawable.ic_edit).fit().centerCrop().into(holder.imageView);
+        Picasso.with(context).load(retriveList.get(position)).placeholder(R.drawable.ic_edit).fit().centerCrop().into(holder.imageView);
 
     }
 
     @Override
     public int getItemCount() {
-        return uploadList.size();
+        return retriveList.size();
     }
 
     public class MyviewHolder extends RecyclerView.ViewHolder {
